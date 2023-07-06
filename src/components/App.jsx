@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getApiImageGallery, quntityPage } from './Services/Api';
+import { getApiImageGallery } from './Services/Api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Searchbar from './Searchbar/Searchbar';
@@ -64,18 +64,17 @@ export class App extends Component {
   };
 
   render() {
-    const length = this.state.dataResult.length;
-    const { dataResult, status } = this.state;
+    const { dataResult, status, totalImages } = this.state;
 
     return (
       <>
         <Searchbar onSubmit={this.onSubmit} />
 
-        {length !== 0 && <ImageGallery images={dataResult} />}
+        {dataResult.length !== 0 && <ImageGallery images={dataResult} />}
 
-        {length !== 0 &&
-          length % quntityPage === 0 &&
-          status === 'resolved' && <LoadMorButton loadMor={this.loadMor} />}
+        {totalImages !== dataResult.length && status === 'resolved' && (
+          <LoadMorButton loadMor={this.loadMor} />
+        )}
 
         {status === 'pending' && (
           <Circles
