@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { getApiImageGallery } from './Services/Api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,14 +15,7 @@ export const App = () => {
   const [totalImages, setTotalImages] = useState(0);
   const [status, setStatus] = useState('idle'); // "idle"// "pending" // "resolved" // "rejected"
 
-  useEffect(() => {
-    if (dataSubmit !== '') {
-      getRequest();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataSubmit, page]);
-
-  const getRequest = async () => {
+  const getRequest = useCallback(async () => {
     setStatus('pending');
 
     try {
@@ -34,16 +27,19 @@ export const App = () => {
         );
         return;
       }
-      setDataResult(
-        prevDataResult => (prevDataResult = [...prevDataResult, ...data.hits])
-      );
+      setDataResult(prevDataResult => [...prevDataResult, ...data.hits]);
       setTotalImages(data.totalHits);
       setStatus('resolved');
     } catch (error) {
       setStatus('rejected');
       toast.error(error.message);
     }
-  };
+  }, [dataSubmit, page]);
+
+  useEffect(() => {
+    if (!dataSubmit) return;
+    getRequest();
+  }, [dataSubmit, getRequest]);
 
   const onSubmit = onDataSubmit => {
     if (dataSubmit === onDataSubmit) {
@@ -55,7 +51,7 @@ export const App = () => {
   };
 
   const loadMor = () => {
-    setPage(page + 1);
+    setPage(pPage => pPage + 1);
   };
 
   return (

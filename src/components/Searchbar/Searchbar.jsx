@@ -45,55 +45,6 @@ const Searchbar = ({ onSubmit }) => {
   );
 };
 
-// class OldSearchbar extends Component {
-//   state = {
-//     search: '',
-//   };
-
-//   handleValue = evt => {
-//     this.setState(prevState => ({
-//       search: evt.target.value,
-//     }));
-//   };
-
-//   handleSabmit = evt => {
-//     evt.preventDefault();
-//     if (this.state.search.trim() === '') {
-//       toast.warn('Please enter a request!', {
-//         autoClose: 1000,
-//         hideProgressBar: true,
-//         theme: 'colored',
-//       });
-//       return;
-//     }
-//     this.props.onSubmit(this.state.search.trim());
-//     this.setState({
-//       search: '',
-//     });
-//   };
-
-//   render() {
-//     return (
-//       <header className={css.searchbar}>
-//         <form className={css.form} onSubmit={this.handleSabmit}>
-//           <button type="submit">
-//             <span>Search</span>
-//           </button>
-//           <input
-//             onChange={this.handleValue}
-//             value={this.state.search}
-//             name="searchQuery"
-//             type="text"
-//             autoComplete="off"
-//             autoFocus
-//             placeholder="Search images and photos"
-//           />
-//         </form>
-//       </header>
-//     );
-//   }
-// }
-
 Searchbar.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };

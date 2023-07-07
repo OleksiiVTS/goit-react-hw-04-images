@@ -4,6 +4,12 @@ import css from './Modal.module.css';
 
 const Modal = ({ dataImage, closeModalWindow }) => {
   useEffect(() => {
+    const closeEscape = evt => {
+      if (evt.code === 'Escape') {
+        closeModalWindow();
+      }
+    };
+
     document.addEventListener('keydown', closeEscape);
     document.body.classList.toggle('overflow');
 
@@ -11,14 +17,7 @@ const Modal = ({ dataImage, closeModalWindow }) => {
       document.removeEventListener('keydown', closeEscape);
       document.body.classList.toggle('overflow');
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const closeEscape = evt => {
-    if (evt.code === 'Escape') {
-      closeModalWindow();
-    }
-  };
+  }, [closeModalWindow]);
 
   const closeOverlay = evt => {
     if (evt.target.nodeName === 'DIV') {
