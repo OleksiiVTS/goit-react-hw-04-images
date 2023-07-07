@@ -21,12 +21,12 @@ const ImageGalleryItem = ({ tags, largeImageURL, webformatURL }) => {
 
   const showModalWindow = () => {
     const data = { largeImageURL, tags };
-    setDataImage(prevDataImage => (prevDataImage = data));
+    setDataImage(data);
   };
 
-  const closeModalWindow = () => {
-    setOpenModalWindow(openModalWindow => (openModalWindow = false));
-  };
+  // const closeModalWindow = () => {
+  //   setOpenModalWindow(false);
+  // };
 
   return (
     <>
@@ -37,7 +37,10 @@ const ImageGalleryItem = ({ tags, largeImageURL, webformatURL }) => {
         alt={tags}
       />
       {openModalWindow && (
-        <Modal dataImage={dataImage} closeModalWindow={closeModalWindow} />
+        <Modal
+          dataImage={dataImage}
+          closeModalWindow={() => setOpenModalWindow(false)}
+        />
       )}
     </>
   );

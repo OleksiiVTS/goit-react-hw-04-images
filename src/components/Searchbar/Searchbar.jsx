@@ -8,7 +8,7 @@ const Searchbar = ({ onSubmit }) => {
   const [search, setSearch] = useState('');
 
   const handleValue = evt => {
-    setSearch(prevSearch => (prevSearch = evt.target.value));
+    setSearch(evt.target.value);
   };
 
   const handleSabmit = evt => {
@@ -22,7 +22,7 @@ const Searchbar = ({ onSubmit }) => {
       return;
     }
     onSubmit(search.trim());
-    setSearch(prevSearch => (prevSearch = ''));
+    setSearch('');
   };
 
   return (
