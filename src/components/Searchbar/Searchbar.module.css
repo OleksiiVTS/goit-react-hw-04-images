@@ -22,7 +22,6 @@
 
 .form button:hover {
   background: rgb(156, 177, 247);
-  /* box-shadow: inset 0px 1px 6px rgba(26, 26, 37, 0.5); */
   box-shadow: inset 0px 1px 6px rgba(26, 26, 37, 0.5);
 }
 
