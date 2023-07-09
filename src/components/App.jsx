@@ -27,15 +27,15 @@ export const App = () => {
         );
         return;
       }
-      const normalized = data.hits.map(
-        ({ id, tags, webformatURL, largeImageURL }) => ({
-          id,
-          tags,
-          largeImageURL,
-          webformatURL,
-        })
-      );
-      setDataResult(prevDataResult => [...prevDataResult, ...normalized]);
+      // const normalized = data.hits.map(
+      //   ({ id, tags, webformatURL, largeImageURL }) => ({
+      //     id,
+      //     tags,
+      //     largeImageURL,
+      //     webformatURL,
+      //   })
+      // );
+      setDataResult(prevDataResult => [...prevDataResult, ...data.hits]);
       setTotalImages(data.totalHits);
       setStatus('resolved');
     } catch (error) {
