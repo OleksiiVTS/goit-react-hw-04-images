@@ -27,6 +27,7 @@ export const App = () => {
         );
         return;
       }
+
       // const normalized = data.hits.map(
       //   ({ id, tags, webformatURL, largeImageURL }) => ({
       //     id,
@@ -35,6 +36,7 @@ export const App = () => {
       //     webformatURL,
       //   })
       // );
+
       setDataResult(prevDataResult => [...prevDataResult, ...data.hits]);
       setTotalImages(data.totalHits);
       setStatus('resolved');
